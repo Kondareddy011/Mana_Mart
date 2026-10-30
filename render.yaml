@@ -1,0 +1,31 @@
+services:
+  # 1. FastAPI Backend Web Service
+  - type: web
+    name: mana-mart-backend
+    runtime: python
+    region: oregon
+    plan: free
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: APP_NAME
+        value: Mana Grocery Hub - Vijayawada
+      - key: SECRET_KEY
+        generateValue: true
+
+  # 2. React Vite Frontend (Customer Store)
+  - type: web
+    name: mana-mart-frontend
+    runtime: static
+    region: oregon
+    plan: free
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
