@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  body {
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+}
+
+/* THEME 1: Fresh Green & Crisp White (Default Grocery Brand) */
+.theme-fresh {
+  --primary: #10b981;
+  --primary-dark: #047857;
+  --primary-light: #ecfdf5;
+  --primary-gradient: linear-gradient(135deg, #059669 0%, #10b981 50%, #34d399 100%);
+  --accent: #f59e0b;
+  --surface-card: rgba(255, 255, 255, 0.95);
+  --border-subtle: #e2e8f0;
+  --badge-bg: #d1fae5;
+  --badge-text: #065f46;
+}
+
+/* THEME 2: Premium Dark Emerald & Cream */
+.theme-premium {
+  --primary: #064e3b;
+  --primary-dark: #022c22;
+  --primary-light: #fef3c7;
+  --primary-gradient: linear-gradient(135deg, #022c22 0%, #064e3b 60%, #047857 100%);
+  --accent: #d97706;
+  --surface-card: #fffdfa;
+  --border-subtle: #e7e5e4;
+  --badge-bg: #fef3c7;
+  --badge-text: #78350f;
+}
+
+/* THEME 3: Friendly and Colorful (Family-Focused) */
+.theme-colorful {
+  --primary: #ea580c;
+  --primary-dark: #c2410c;
+  --primary-light: #ffedd5;
+  --primary-gradient: linear-gradient(135deg, #ea580c 0%, #f97316 50%, #0d9488 100%);
+  --accent: #0284c7;
+  --surface-card: #ffffff;
+  --border-subtle: #f1f5f9;
+  --badge-bg: #fed7aa;
+  --badge-text: #9a3412;
+}
+
+/* Glassmorphism & Micro-animations */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.glass-nav {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.1), 0 10px 15px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Pulsing Badge & Shimmer */
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.04); }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 2.5s infinite ease-in-out;
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+.animate-float {
+  animation: float-slow 4s ease-in-out infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Print Styles for Packing Slips & Mandi Procurement Sheets */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-page-break {
+    page-break-after: always;
+  }
+}
